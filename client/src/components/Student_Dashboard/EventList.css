@@ -1,0 +1,14 @@
+.Event-search {
+    margin: 3%;
+    color: white;
+
+}
+
+.search-input {
+    background-color: rgb(164, 116, 184);
+    padding: 1%;
+    color: white;
+    border-radius: 5%;
+    border-color: black;
+    width: 20%;
+}

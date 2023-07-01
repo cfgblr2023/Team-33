@@ -20,7 +20,7 @@ function Forms() {
                   </div>
 
                   <div class="md:col-span-5">
-                    <label for="address">Address / Street</label>
+                    <label for="address">Address</label>
                     <input type="text" name="address" id="address" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
                   </div>
 

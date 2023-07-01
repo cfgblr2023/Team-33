@@ -1,4 +1,26 @@
-function volunteerForms() {
+import { useState } from "react";
+
+function StudentForms() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    address: "",
+    qualification: "",
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(
+      `Name: ${formData.name}, Email: ${formData.email}, Message: ${formData.message}`
+    );
+  };
+
   return (
     <div className="App">
       <div class="min-h-screen p-6 bg-gray-100">
@@ -11,11 +33,12 @@ function volunteerForms() {
                     <div class="md:col-span-5">
                       <label for="full_name">Full Name</label>
                       <input
-                        type="text"
-                        name="full_name"
-                        id="full_name"
                         class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        value=""
+                        value={formData.name}
+                        type="text"
+                        id="name"
+                        name="name"
+                        onChange={handleChange}
                       />
                     </div>
 
@@ -26,8 +49,9 @@ function volunteerForms() {
                         name="email"
                         id="email"
                         class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        value=""
+                        value={formData.email}
                         placeholder="email@domain.com"
+                        onChange={handleChange}
                       />
                     </div>
                     <div class="md:col-span-5">
@@ -37,7 +61,8 @@ function volunteerForms() {
                         name="password"
                         id="password"
                         class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        value=""
+                        value={formData.password}
+                        onChange={handleChange}
                         placeholder="password"
                       />
                     </div>
@@ -49,12 +74,12 @@ function volunteerForms() {
                         name="address"
                         id="address"
                         class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        value=""
+                        value={formData.address}
+                        onChange={handleChange}
                         placeholder=""
                       />
                     </div>
 
-                    
                     <div class="md:col-span-2">
                       <label for="highest-qualification">
                         Highest Qualification:
@@ -63,6 +88,8 @@ function volunteerForms() {
                         name="highest-qualification"
                         id="highest-qualification"
                         class="text-gray-800 w-full h-10 bg-gray-50 flex border border-gray-200 rounded items-center"
+                        value={formData.qualification}
+                        onChange={handleChange}
                       >
                         <option value="">--Please choose an option--</option>
                         <option value="No formal education">
@@ -87,32 +114,36 @@ function volunteerForms() {
                         </option>
                       </select>
                     </div>
+
                     <div class="md:col-span-5">
-                      <label for="Volunteer work">I want to :</label>
-                      <select
-                        name="Volunteer work"
-                        id="Volunteer work"
-                        class="text-gray-800 w-full h-10 bg-gray-50 flex border border-gray-200 rounded items-center"
-                      >
-                        <option value="">--Please choose an option--</option>
-                        <option value="Raise Funds">Raise Funds</option>
-                        <option value="Event Organizer">Event Organizer</option>
-                        <option value="School College Tie -Up">
-                          School & College Tie -Up
-                        </option>
-                        <option value="Collect Non-Monetary Items">
-                          Collect Non-Monetary Items
-                        </option>
-                        <option value="Internship Program">
-                          Internship Program - Digital Marketing, Human
-                          Resources, and Teachers
-                        </option>
-                        <option value="Teach">Teach</option>
-                      </select>
+                      <label for="avatar">Upload Document: </label>
+                      <p>
+                        Add relevant Identity card, Marksheets or Bonafide
+                        Certificate
+                      </p>
+                      <input type="file" id="avatar" name="avatar"></input>
                     </div>
-                    <div class="md:col-span-5 text-right">
+
+                    <div class="md:col-span-5">
+                      <label for="avatar">Upload Govt ID Proof: </label>
+                      <input type="file" id="avatar" name="avatar"></input>
+                    </div>
+
+                    <div class="md:col-span-2 text-left">
+                      <p class="font-semibold text-gray-600">
+                        Already have an account?
+                      </p>
+                      <a href="/login" class="text-blue-600">
+                        Login
+                      </a>
+                    </div>
+
+                    <div
+                      class="md:col-span-3 text-right"
+                      onClick={handleSubmit}
+                    >
                       <a
-                        href="/volunteer_register"
+                        href="/"
                         class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 button"
                       >
                         Register
@@ -142,4 +173,4 @@ function volunteerForms() {
   );
 }
 
-export default volunteerForms;
+export default StudentForms;
