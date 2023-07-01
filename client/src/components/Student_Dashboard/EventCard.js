@@ -14,7 +14,7 @@ const Card = ({ event }) => {
                 <p className="card-date">Date & Time: {event.dateTime}</p>
                 <p className="card-location">Location: {event.location}</p>
                 <button className="card-button" onClick={handleNotifyVolunteers}>
-                    Notify Volunteers
+                    Register
                 </button>
             </div>
         </div>

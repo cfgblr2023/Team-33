@@ -2,10 +2,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin-left: 10%;
+    margin-right: 5%;
 }
 
 .card {
-    flex-basis: calc(33.33% - 20px);
+    flex-basis: calc(33.33% - 30px);
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
