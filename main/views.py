@@ -1,5 +1,5 @@
 # views.py
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from rest_framework import generics
 from rest_framework.response import Response
 from .serializers import (
@@ -10,13 +10,50 @@ from .serializers import (
     SkillSerializer,
     EventSerializer
 )
-from .models import Student, Volunteer, Skill, Event
+from .models import Student, Volunteer, Skill, Event, User
+from rest_framework_simplejwt.tokens import RefreshToken
 
 class StudentRegisterView(generics.CreateAPIView):
     serializer_class = StudentRegisterSerializer
+    
+    def post(self, request, format=None):
+        user_data = self.request.data.get('user')
+        user = User.objects.create(**user_data)
+        # user.set_password(user_data['password'])
+        user.save()
+        
+        refresh = RefreshToken.for_user(user)
+        access_token = refresh.access_token
+        
+        user_serializer = self.get_serializer(request.data)
+        user_data = user_serializer.data
+        
+        return Response({
+            'access_token': str(access_token),
+            'refresh_token': str(refresh),
+            'user': user_data
+        }, status=201)
 
 class VolunteerRegisterView(generics.CreateAPIView):
     serializer_class = VolunteerRegisterSerializer
+    
+    def post(self, request, format=None):
+        user_data = self.request.data.get('user')
+        user = User.objects.create(**user_data)
+        # user.set_password(user_data['password'])
+        user.save()
+        
+        refresh = RefreshToken.for_user(user)
+        access_token = refresh.access_token
+        
+        user_serializer = self.get_serializer(request.data)
+        user_data = user_serializer.data
+        
+        return Response({
+            'access_token': str(access_token),
+            'refresh_token': str(refresh),
+            'user': user_data
+        }, status=201)
 
 class VerifyStudentView(generics.ListAPIView):
     serializer_class = UnverifiedStudentSerializer

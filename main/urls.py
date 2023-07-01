@@ -9,6 +9,13 @@ from .views import (
     EventListView,
     EventDetailView,
 )
+from datetime import timedelta
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # Token expiration time
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),  # Refresh token expiration time
+}
 
 urlpatterns = [
     path('register/student/', StudentRegisterView.as_view(), name='student-register'),
@@ -19,4 +26,7 @@ urlpatterns = [
     path('skills/<int:pk>/', SkillDetailView.as_view(), name='skill-detail'),
     path('events/', EventListView.as_view(), name='event-list'),
     path('events/<int:pk>/', EventDetailView.as_view(), name='event-detail'),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    
 ]
