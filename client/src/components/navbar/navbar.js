@@ -44,23 +44,23 @@ export const Navbar = () => {
         >
           <div className="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto">
             <a href="/">
-              <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded font-bold items-center justify-center hover:text-green">
-                Home
+              <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded font-bold items-center justify-center hover:text-blue">
+                About Us
               </p>
             </a>
             <a href="/">
               <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded font-bold items-center justify-center hover:text-blue">
-                Services
+                Donate
               </p>
             </a>
             <a href="/">
               <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded font-bold items-center justify-center hover:text-blue">
-                About us
+                Register
               </p>
             </a>
             <a href="/">
               <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded font-bold items-center justify-center hover:text-blue">
-                Contact us
+                Admin Login
               </p>
             </a>
           </div>
