@@ -22,7 +22,7 @@ class StudentRegisterSerializer(serializers.ModelSerializer):
 
 class VolunteerRegisterSerializer(serializers.ModelSerializer):
     user = UserSerializer()
-    skills = serializers.PrimaryKeyRelatedField(queryset=Skill.objects.all(), many=True)
+    # skills = serializers.PrimaryKeyRelatedField(queryset=Skill.objects.all(), many=True)
 
     class Meta:
         model = Volunteer
