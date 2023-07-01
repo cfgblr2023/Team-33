@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Student, Volunteer
+from .models import User, Student, Volunteer, Event, Skill
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -45,3 +45,26 @@ class UnverifiedVolunteerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Volunteer
         fields = ('user', 'qualifications', 'proof', 'isVerified')
+
+class SkillSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Skill
+        fields = ('name', 'proof')
+
+class VolunteerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Volunteer
+        fields = ('id', 'user', 'qualifications', 'proof', 'isVerified')
+class EventSerializer(serializers.ModelSerializer):
+    volunteers = VolunteerSerializer(many=True, read_only=False, required=False)
+
+    class Meta:
+        model = Event
+        fields = ('id', 'skill', 'online', 'date_and_time', 'link', 'location', 'volunteers')
+
+    def create(self, validated_data):
+        volunteers_data = validated_data.pop('volunteers', [])
+        event = Event.objects.create(**validated_data)
+        event.volunteers.set(volunteers_data)
+        return event
+

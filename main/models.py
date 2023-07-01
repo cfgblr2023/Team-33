@@ -13,25 +13,23 @@ class Volunteer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     qualifications = models.TextField()
     proof = models.CharField(max_length=255)
-    skills = models.ManyToManyField('Skill', related_name='volunteers')
     isVerified = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.name
 
 class Student(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, default=None)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     highest_qualification = models.TextField()
     proof = models.CharField(max_length=255)
     isVerified = models.BooleanField(default=False)
-
 
     def __str__(self):
         return self.user.name if self.user else ""
 
 class Skill(models.Model):
     name = models.CharField(max_length=255)
-    proof = models.CharField(max_length=255)
+    proof = models.CharField(max_length=255, null=True)
 
     def __str__(self):
         return self.name
@@ -42,7 +40,7 @@ class Event(models.Model):
     date_and_time = models.DateTimeField()
     link = models.URLField(blank=True, null=True)
     location = models.CharField(max_length=255, blank=True, null=True)
-    volunteers = models.ForeignKey(Volunteer, on_delete=models.CASCADE, default=None)
+    volunteers = models.ManyToManyField(Volunteer, related_name='events', blank=True)
 
     def __str__(self):
         return f"Event {self.pk}"
