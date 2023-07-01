@@ -114,25 +114,26 @@ export default function Layout() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{
-              marginRight: 5,
-              ...(open && { display: 'none' }),
-            }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Admin Dashboard
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <AppBar position="fixed" open={open} color="primary">
+      <Toolbar>
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          onClick={handleDrawerOpen}
+          edge="start"
+          sx={{
+            marginRight: 5,
+            ...(open && { display: 'none' }),
+          }}
+        >
+      <MenuIcon />
+    </IconButton>
+    <Typography variant="h6" noWrap component="div">
+      Admin Dashboard
+    </Typography>
+  </Toolbar>
+</AppBar>
+
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
@@ -177,7 +178,7 @@ export default function Layout() {
             justifyContent: 'center',
           }}
         >
-          {/* Add an icon or any content you want */}
+          
         </ListItemIcon>
         <ListItemText primary='Approve students' sx={{ opacity: open ? 1 : 0 }} />
       </ListItemButton>
@@ -203,7 +204,7 @@ export default function Layout() {
         <ListItemText primary='Approve volunteers' sx={{ opacity: open ? 1 : 0 }} />
       </ListItemButton>
     </ListItem>
-            <ListItem  onClick={()=>{navigate("/admin/events")}} disablePadding sx={{ display: 'block' }}>
+            <ListItem  onClick={()=>{navigate("/admin/createevent")}} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -220,14 +221,14 @@ export default function Layout() {
                 >
                  
                 </ListItemIcon>
-                <ListItemText primary='Events' sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary='Create Event' sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
         </List>
         <Divider />
         
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 0.4}}>
         <DrawerHeader />
         
       </Box>

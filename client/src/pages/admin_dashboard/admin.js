@@ -4,6 +4,7 @@ import Overview from '../../components/admin_dashboard/Overview.js';
 import Layout from '../../components/admin_dashboard/Layout.js';
 import ApprovalVolunteers from '../../components/admin_dashboard/ApprovalVolunteers.js';
 import ApprovalStudents from '../../components/admin_dashboard/ApprovalStudents.js';
+import CreateEvent from '../../components/admin_dashboard/CreateEvent.js';
 
 const routes = [
   {
@@ -21,6 +22,10 @@ const routes = [
       {
         path: 'admin/approvalstudents',
         element: <ApprovalStudents />,
+      },
+      {
+        path: 'admin/createevent',
+        element: <CreateEvent />,
       },
     ],
   },
