@@ -7,6 +7,10 @@ import Student from "./pages/students_dashboard/students.js";
 import Overview from "./components/admin_dashboard/Overview.js";
 import ApproveVolunteers from "./components/admin_dashboard/ApprovalVolunteers.js";
 import ApproveStudents from "./components/admin_dashboard/ApprovalStudents.js";
+import CreateEvent from "./components/admin_dashboard/CreateEvent.js";
+import StudentRegister from "./pages/student_registration_form/student_registration_form";
+import VolunteerRegister from "./pages/volunteer_dashboard/volunteer.js";
+
 function App() {
   return (
     <div className="App">
@@ -19,6 +23,13 @@ function App() {
           <Route exact path="/admin/overview" element={<Overview />} />
           <Route exact path="/admin/approvalvolunteers" element={<ApproveVolunteers />} />    
           <Route exact path="/admin/approvalstudents" element={<ApproveStudents />} />
+          <Route exact path="/admin/createevent" element={<CreateEvent />} />
+          <Route exact path="/student_register" element={<StudentRegister />} />
+          <Route
+            exact
+            path="/volunteer_register"
+            element={<VolunteerRegister />}
+          />
         </Routes>
       </Router>
     </div>
