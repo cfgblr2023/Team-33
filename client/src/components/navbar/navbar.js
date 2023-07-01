@@ -58,7 +58,7 @@ export const Navbar = () => {
                 Register
               </p>
             </a>
-            <a href="/">
+            <a href="/admin">
               <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded font-bold items-center justify-center hover:text-blue">
                 Admin Login
               </p>
