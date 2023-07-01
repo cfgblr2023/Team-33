@@ -1,3 +1,4 @@
+# models.py
 from django.db import models
 
 class User(models.Model):
@@ -14,6 +15,7 @@ class Volunteer(models.Model):
     qualifications = models.TextField()
     proof = models.CharField(max_length=255)
     isVerified = models.BooleanField(default=False)
+    skills = models.ManyToManyField('Skill', related_name='volunteers')
 
     def __str__(self):
         return self.user.name

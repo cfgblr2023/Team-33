@@ -1,3 +1,4 @@
+# serializers.py
 from rest_framework import serializers
 from .models import User, Student, Volunteer, Event, Skill
 
@@ -21,16 +22,21 @@ class StudentRegisterSerializer(serializers.ModelSerializer):
 
 class VolunteerRegisterSerializer(serializers.ModelSerializer):
     user = UserSerializer()
+    skills = serializers.PrimaryKeyRelatedField(queryset=Skill.objects.all(), many=True)
 
     class Meta:
         model = Volunteer
-        fields = ('user', 'qualifications', 'proof', 'isVerified')
+        fields = ('user', 'qualifications', 'proof', 'isVerified', 'skills')
 
     def create(self, validated_data):
         user_data = validated_data.pop('user')
+        skills_data = validated_data.pop('skills', [])
         user = User.objects.create(**user_data)
         volunteer = Volunteer.objects.create(user=user, **validated_data)
+        volunteer.skills.set(skills_data)
         return volunteer
+
+
 
 class UnverifiedStudentSerializer(serializers.ModelSerializer):
     user = UserSerializer()
@@ -51,26 +57,19 @@ class SkillSerializer(serializers.ModelSerializer):
         model = Skill
         fields = ('name', 'proof')
 
-class VolunteerSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Volunteer
-        fields = ('user', 'qualifications', 'proof', 'isVerified')
 class EventSerializer(serializers.ModelSerializer):
-    skill_name = serializers.CharField(write_only=True)
-    volunteers = VolunteerSerializer(many=True, read_only=False, required=False)
+    volunteers = UnverifiedVolunteerSerializer(many=True, read_only=False, required=False)
 
     class Meta:
         model = Event
-        fields = ('id', 'skill_name', 'online', 'date_and_time', 'link', 'location', 'volunteers')
+        fields = ('id', 'skill', 'online', 'date_and_time', 'link', 'location', 'volunteers')
 
     def create(self, validated_data):
-        skill_name = validated_data.pop('skill_name')
         volunteers_data = validated_data.pop('volunteers', [])
-
-        # Check if the skill already exists, or create a new one
-        skill, _ = Skill.objects.get_or_create(name=skill_name)
-
-        event = Event.objects.create(skill=skill, **validated_data)
-        event.volunteers.set(volunteers_data)
+        event = Event.objects.create(**validated_data)
+        for volunteer_data in volunteers_data:
+            user_data = volunteer_data.pop('user')
+            user = User.objects.create(**user_data)
+            volunteer = Volunteer.objects.create(user=user, **volunteer_data)
+            event.volunteers.add(volunteer)
         return event
-
