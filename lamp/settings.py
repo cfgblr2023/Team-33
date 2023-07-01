@@ -37,12 +37,15 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+     'corsheaders',
     "main",
     'rest_framework',
     'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+  'corsheaders.middleware.CorsMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -71,6 +74,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "lamp.wsgi.application"
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 # Database
