@@ -14,11 +14,35 @@ function StudentForms() {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(
-      `Name: ${formData.name}, Email: ${formData.email}, Message: ${formData.message} Qualification: ${formData.qualification}`
-    );
+    fetch(`${process.env.REACT_APP_URL}register/student/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: {
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+          address: formData.address,
+        },
+        highest_qualification: formData.qualification,
+        proof: "Qualified",
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        localStorage.setItem("Token", data.access_token);
+        localStorage.setItem("Data", JSON.stringify(data.user));
+        if (data.access_token) {
+          window.location.href = "/student";
+        }
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   return (

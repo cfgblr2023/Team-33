@@ -1,4 +1,50 @@
-function volunteerForms() {
+import { useState } from "react";
+
+function VolunteerForms() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    address: "",
+    qualification: "",
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    fetch(`${process.env.REACT_APP_URL}register/volunteer/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: {
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+          address: formData.address,
+        },
+        qualifications: formData.qualification,
+        proof: "Qualified",
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        localStorage.setItem("Token", data.access_token);
+        localStorage.setItem("Data", JSON.stringify(data.user.user));
+        if (data.access_token) {
+          window.location.href = "/student";
+        }
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
   return (
     <div className="App">
       <div class="min-h-screen p-6 bg-gray-100">
@@ -11,11 +57,12 @@ function volunteerForms() {
                     <div class="md:col-span-5">
                       <label for="full_name">Full Name</label>
                       <input
-                        type="text"
-                        name="full_name"
-                        id="full_name"
                         class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        value=""
+                        value={formData.name}
+                        type="text"
+                        id="name"
+                        name="name"
+                        onChange={handleChange}
                       />
                     </div>
 
@@ -26,8 +73,9 @@ function volunteerForms() {
                         name="email"
                         id="email"
                         class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        value=""
+                        value={formData.email}
                         placeholder="email@domain.com"
+                        onChange={handleChange}
                       />
                     </div>
                     <div class="md:col-span-5">
@@ -37,7 +85,8 @@ function volunteerForms() {
                         name="password"
                         id="password"
                         class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        value=""
+                        value={formData.password}
+                        onChange={handleChange}
                         placeholder="password"
                       />
                     </div>
@@ -49,17 +98,17 @@ function volunteerForms() {
                         name="address"
                         id="address"
                         class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        value=""
+                        value={formData.address}
+                        onChange={handleChange}
                         placeholder=""
                       />
                     </div>
 
-                    
                     <div class="md:col-span-2">
                       <label for="highest-qualification">
                         Highest Qualification:
                       </label>
-                      <select
+                      {/* <select
                         name="highest-qualification"
                         id="highest-qualification"
                         class="text-gray-800 w-full h-10 bg-gray-50 flex border border-gray-200 rounded items-center"
@@ -85,7 +134,16 @@ function volunteerForms() {
                         <option value="Doctorate or higher">
                           Doctorate or Higher
                         </option>
-                      </select>
+                      </select> */}
+                      <input
+                        type="text"
+                        name="qualification"
+                        id="qualification"
+                        class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        value={formData.qualification}
+                        onChange={handleChange}
+                        placeholder=""
+                      />
                     </div>
                     <div class="md:col-span-5">
                       <label for="Volunteer work">I want to :</label>
@@ -114,6 +172,7 @@ function volunteerForms() {
                       <a
                         href="/volunteer_register"
                         class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 button"
+                        onClick={handleSubmit}
                       >
                         Register
                         <svg
@@ -142,4 +201,4 @@ function volunteerForms() {
   );
 }
 
-export default volunteerForms;
+export default VolunteerForms;
