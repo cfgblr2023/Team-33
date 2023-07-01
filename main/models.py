@@ -41,6 +41,7 @@ class Event(models.Model):
     link = models.URLField(blank=True, null=True)
     location = models.CharField(max_length=255, blank=True, null=True)
     volunteers = models.ManyToManyField(Volunteer, related_name='events', blank=True)
+    description = models.TextField(default="Description")
 
     def __str__(self):
         return f"Event {self.pk}"
