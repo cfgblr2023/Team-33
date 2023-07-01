@@ -7,7 +7,7 @@ export const Navbar = () => {
     setActive(!active);
   };
 
-  function WinOpen() {
+  function WinOpen2() {
     var url = document.redirect.selection.value;
     document.location.href = url;
   }
@@ -58,26 +58,24 @@ export const Navbar = () => {
                 Donate
               </p>
             </a>
-            <div class="md:col-span-5">
-              <select name="Volunteer work" id="Volunteer work">
-                <option value="Raise Funds">Register</option>
-                <option value="Event Organizer">Student</option>
-                <option value="School College Tie -Up">Volunter</option>
-              </select>
-            </div>
             <form name="redirect">
-              <select name="selection" onChange={WinOpen}>
-                <option value="Login" onChange={WinOpen}>
-                  Login
+              <select name="selection" onChange={WinOpen2}>
+                <option value="Register" onChange={WinOpen2}>
+                  Register
                 </option>
-                <option value="/admin" onChange={WinOpen}>
-                  admin
+                <option value="/student_register" onChange={WinOpen2}>
+                  Student
                 </option>
-                <option value="/student" onChange={WinOpen}>
-                  student
+                <option value="/volunteer_register" onChange={WinOpen2}>
+                  Volunteer
                 </option>
               </select>
             </form>
+            <a href="/login">
+              <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded font-bold items-center justify-center hover:text-blue">
+                Login
+              </p>
+            </a>
           </div>
         </div>
       </nav>
