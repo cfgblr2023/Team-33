@@ -69,7 +69,7 @@ function Landing() {
               begging for a fish. #Educationendspoverty
             </p>
             <a
-              href="/"
+              href="/student_register"
               class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 button"
             >
               Register
@@ -96,7 +96,7 @@ function Landing() {
               message far and beyond.
             </p>
             <a
-              href="/"
+              href="/volunteer_register"
               class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 button"
             >
               Register
