@@ -16,8 +16,8 @@ function StudentForms() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(
-      `Name: ${formData.name}, Email: ${formData.email}, Message: ${formData.message}`
+    console.log(
+      `Name: ${formData.name}, Email: ${formData.email}, Message: ${formData.message} Qualification: ${formData.qualification}`
     );
   };
 
@@ -84,7 +84,7 @@ function StudentForms() {
                       <label for="highest-qualification">
                         Highest Qualification:
                       </label>
-                      <select
+                      {/* <select
                         name="highest-qualification"
                         id="highest-qualification"
                         class="text-gray-800 w-full h-10 bg-gray-50 flex border border-gray-200 rounded items-center"
@@ -112,7 +112,16 @@ function StudentForms() {
                         <option value="Doctorate or higher">
                           Doctorate or Higher
                         </option>
-                      </select>
+                      </select> */}
+                      <input
+                        type="text"
+                        name="qualification"
+                        id="qualification"
+                        class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        value={formData.qualification}
+                        onChange={handleChange}
+                        placeholder=""
+                      />
                     </div>
 
                     <div class="md:col-span-5">
