@@ -7,6 +7,11 @@ export const Navbar = () => {
     setActive(!active);
   };
 
+  function WinOpen() {
+    var url = document.redirect.selection.value;
+    document.location.href = url;
+  }
+
   return (
     <>
       <nav className="flex items-center flex-wrap p-1 ">
@@ -53,33 +58,26 @@ export const Navbar = () => {
                 Donate
               </p>
             </a>
-            <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" className ="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded font-bold items-center justify-center hover:text-blue" type="button">Register As <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-              <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                  <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                    <li>
-                      <a href="/" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-                    </li>
-                    <li>
-                      <a href="/" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                    </li>
-                    <li>
-                      <a href="/" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                    </li>
-                    <li>
-                      <a href="/" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
-                    </li>
-                  </ul>
-              </div>
-            <a href="/">
-              <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded font-bold items-center justify-center hover:text-blue">
-                Register
-              </p>
-            </a>
-            <a href="/admin">
-              <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded font-bold items-center justify-center hover:text-blue">
-                Admin Login
-              </p>
-            </a>
+            <div class="md:col-span-5">
+              <select name="Volunteer work" id="Volunteer work">
+                <option value="Raise Funds">Register</option>
+                <option value="Event Organizer">Student</option>
+                <option value="School College Tie -Up">Volunter</option>
+              </select>
+            </div>
+            <form name="redirect">
+              <select name="selection" onChange={WinOpen}>
+                <option value="Login" onChange={WinOpen}>
+                  Login
+                </option>
+                <option value="/admin" onChange={WinOpen}>
+                  admin
+                </option>
+                <option value="/student" onChange={WinOpen}>
+                  student
+                </option>
+              </select>
+            </form>
           </div>
         </div>
       </nav>

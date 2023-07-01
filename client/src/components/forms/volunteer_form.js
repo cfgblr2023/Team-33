@@ -152,6 +152,7 @@ function volunteerForms() {
                           Internship Program - Digital Marketing, Human
                           Resources, and Teachers
                         </option>
+                        <option value="Teach">Teach</option>
                       </select>
                     </div>
                     <div class="md:col-span-5 text-right">
