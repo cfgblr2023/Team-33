@@ -14,6 +14,7 @@ class Volunteer(models.Model):
     qualifications = models.TextField()
     proof = models.CharField(max_length=255)
     skills = models.ManyToManyField('Skill', related_name='volunteers')
+    isVerified = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.name
@@ -22,6 +23,7 @@ class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, default=None)
     highest_qualification = models.TextField()
     proof = models.CharField(max_length=255)
+    isVerified = models.BooleanField(default=False)
 
 
     def __str__(self):
