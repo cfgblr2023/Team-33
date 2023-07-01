@@ -8,6 +8,7 @@ from .views import (
     SkillDetailView,
     EventListView,
     EventDetailView,
+    AdminCheckView,
 )
 from datetime import timedelta
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
@@ -28,5 +29,6 @@ urlpatterns = [
     path('events/<int:pk>/', EventDetailView.as_view(), name='event-detail'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('check-admin/', AdminCheckView.as_view(), name='admin-check'),
     
 ]

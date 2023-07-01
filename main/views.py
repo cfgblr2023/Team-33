@@ -12,6 +12,17 @@ from .serializers import (
 )
 from .models import Student, Volunteer, Skill, Event, User
 from rest_framework_simplejwt.tokens import RefreshToken
+from .models import Admin
+from rest_framework.views import APIView
+
+
+class AdminCheckView(APIView):
+    def get(self, request, format=None):
+        email = request.query_params.get('email', None)
+        if email is not None:
+            if Admin.objects.filter(email=email).exists():
+                return Response({'result': 'yes'})
+        return Response({'result': 'no'})
 
 class StudentRegisterView(generics.CreateAPIView):
     serializer_class = StudentRegisterSerializer
