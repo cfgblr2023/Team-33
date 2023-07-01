@@ -26,14 +26,14 @@ class VolunteerRegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Volunteer
-        fields = ('user', 'qualifications', 'proof', 'isVerified', 'skills')
+        fields = ('user', 'qualifications', 'proof', 'isVerified')
 
     def create(self, validated_data):
         user_data = validated_data.pop('user')
-        skills_data = validated_data.pop('skills', [])
+        # skills_data = validated_data.pop('skills', [])
         user = User.objects.create(**user_data)
         volunteer = Volunteer.objects.create(user=user, **validated_data)
-        volunteer.skills.set(skills_data)
+        # volunteer.skills.set(skills_data)
         return volunteer
 
 
