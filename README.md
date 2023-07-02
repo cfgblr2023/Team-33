@@ -69,7 +69,7 @@ Distributed under the MIT License. See [LICENSE](https://github.com//ReadME-Gene
 * **Aryaman Adivya Singh ** 
 <br>
 
-* **Frontend Team:**
+**Frontend Team:**
 
 * **Shraddha Pawar**
 * **Shruti Singh**
