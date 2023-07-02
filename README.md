@@ -66,8 +66,9 @@ Distributed under the MIT License. See [LICENSE](https://github.com//ReadME-Gene
 **Backend Team:**
 * **Ashutosh Bharadwaj**
 * **Purvi Binani**
+* **Aryaman Adivya Singh ** 
 **Frontend Team:**
-* **Aryaman Adivya Singh** 
+
 * **Shraddha Pawar**
 * **Shruti Singh**
 * **Riddhi Chaudhary**
