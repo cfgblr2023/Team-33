@@ -1,7 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const Navbar = () => {
   const [active, setActive] = useState(false);
+  const [isLoggedin, setIsLoggedin] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("Token");
+    if (token) {
+      setIsLoggedin(true);
+    }
+  }, []);
+
+  const logout = () => {
+    localStorage.clear();
+    setIsLoggedin(false);
+    window.location.href = "/";
+  };
 
   const handleClick = () => {
     setActive(!active);
@@ -61,24 +75,32 @@ export const Navbar = () => {
                 Donate
               </p>
             </a>
-            <form name="redirect">
-              <select name="selection" onChange={WinOpen2}>
-                <option value="Register" onChange={WinOpen2}>
-                  Register
-                </option>
-                <option value="/student_register" onChange={WinOpen2}>
-                  Student
-                </option>
-                <option value="/volunteer_register" onChange={WinOpen2}>
-                  Volunteer
-                </option>
-              </select>
-            </form>
-            <a href="/login">
-              <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded font-bold items-center justify-center hover:text-blue">
-                Login
-              </p>
-            </a>
+            {isLoggedin ? (
+              <button className="" onClick={logout}>
+                Logout
+              </button>
+            ) : (
+              <>
+                <form name="redirect">
+                  <select name="selection" onChange={WinOpen2}>
+                    <option value="Register" onChange={WinOpen2}>
+                      Register
+                    </option>
+                    <option value="/student_register" onChange={WinOpen2}>
+                      Student
+                    </option>
+                    <option value="/volunteer_register" onChange={WinOpen2}>
+                      Volunteer
+                    </option>
+                  </select>
+                </form>
+                <a href="/login">
+                  <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded font-bold items-center justify-center hover:text-blue">
+                    Login
+                  </p>
+                </a>
+              </>
+            )}
           </div>
         </div>
       </nav>

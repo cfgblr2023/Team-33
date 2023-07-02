@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "./Layout.js";
 import { DataGrid } from "@mui/x-data-grid";
-import { useState } from "react";
+import { formControlClasses } from "@mui/base";
+import "./approval.css";
 
 const columns = [
   { field: "name", headerName: "Name", width: 70 },
@@ -37,6 +38,7 @@ const ApprovalStudents = () => {
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
+          setFormData(data);
         })
         .catch((err) => {
           console.log(err.message);
@@ -45,28 +47,68 @@ const ApprovalStudents = () => {
     handleSubmit();
   }, []);
 
+  const onSubmit = async (event) => {
+    fetch(`${process.env.REACT_APP_URL}verify/student/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: event,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(event);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+    window.location.reload();
+  };
+
   return (
     <div>
       <Layout />
-      <div
-        style={{
-          height: 400,
-          width: "80%",
-          marginLeft: "auto",
-          marginRight: "20px",
-        }}
-      >
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
-            },
-          }}
-          pageSizeOptions={[5, 10]}
-          checkboxSelection
-        />
+      <div className="leaderboard">
+        <div className="leaderboardbody">
+          <div className="leaderboardTable">
+            <div className=""></div>
+            <div className="tableHead">
+              <li className="NO">#</li>
+              {/* <li>Name</li> */}
+              <li className="Playavatar">Name</li>
+              <li>Email</li>
+              <li>Address</li>
+              <li>Qualification</li>
+              <li>Docs</li>
+              <li>Verify</li>
+            </div>
+            {formData.map((play, i) => (
+              <div key={i} className="tableBody">
+                <div key="row" className="row">
+                  <li key="no" className="NO">
+                    {i + 1}
+                  </li>
+                  <li key="value">{play.user.name}</li>
+                  <li key="email">{play.user.email}</li>
+                  <li key="address">{play.user.address}</li>
+                  <li key="qualification">{play.highest_qualification}</li>
+                  <li key="prof">{play.proof}</li>
+                  <li
+                    key="verify"
+                    className="okay"
+                    onClick={() => {
+                      onSubmit(play.user.name);
+                    }}
+                  >
+                    Verify
+                  </li>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
