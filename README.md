@@ -1,1 +1,4 @@
 # Team-33
+This project repo aims to solve the problem of LAMP Foundation!
+Our project aims to create an end-to-end volunteer management system. The tech stack used is React(front-end) + Django(Back-end). The essential components of our project include bringing awareness to volunteers and students, and mapping students(those who dropped out) to volunteers to help them learn the fundamentals to land a job. Our registration is for both students and volunteers, and the admin controls 3 features. The first feature is verifying the students as well as the volunteers coming to teach the students. The second feature is creating events with volunteers for students to enroll. The third feature is releasing events available for all students to see and volunteers to help out and take over.
+We also have a funding page, where we urge donors to help the noble cause of LAMP Foundation and help those in need of a job, learn efficiently and succeed in life!
