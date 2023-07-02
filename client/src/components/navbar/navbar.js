@@ -15,13 +15,16 @@ export const Navbar = () => {
   return (
     <>
       <nav className="flex items-center flex-wrap p-1 ">
-        <a href="/">
-          <p className="inline-flex items-center p-2 mr-4 ">
-            <span className="text-xl font-bold uppercase tracking-wide">
-              Lamp
-            </span>
-          </p>
-        </a>
+      <div class="flex items-center">
+  <div class="h-10 w-10 mr-2 inline">
+    <div class="logo-image">
+      <img src="https://lampeducationtrust.com/wp-content/uploads/2023/02/cropped-Copy-of-LAMP-1.png" class="img-fluid h-10 w-10 self-center"/>
+    </div>
+  </div>
+  <div>
+    <a href="/" class="text-2xl no-underline text-grey-darkest hover:text-blue-dark font-sans font-bold">Lamp</a>
+  </div>
+</div>
         <button
           className=" inline-flex p-3 rounded lg:hidden ml-auto hover:text-blue outline-none"
           onClick={handleClick}
@@ -53,7 +56,7 @@ export const Navbar = () => {
                 About Us
               </p>
             </a>
-            <a href="/">
+            <a href="/donate">
               <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded font-bold items-center justify-center hover:text-blue">
                 Donate
               </p>

@@ -11,6 +11,7 @@ import CreateEvent from "./components/admin_dashboard/CreateEvent.js";
 import StudentRegister from "./pages/student_registration_form/student_registration_form";
 import VolunteerRegister from "./pages/volunteer_dashboard/volunteer.js";
 import Login from "./pages/login/login";
+import Donate from "./pages/donate/donate";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route exact path="/admin/createevent" element={<CreateEvent />} />
           <Route exact path="/student_register" element={<StudentRegister />} />
           <Route exact path="/login" element={<Login />} />
+          <Route exact path="/donate" element={<Donate />} />
           <Route
             exact
             path="/volunteer_register"
