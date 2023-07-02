@@ -1,4 +1,41 @@
+import { useState } from "react";
+
 function Login() {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    fetch(`${process.env.REACT_APP_URL}login/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: formData.email,
+        password: formData.password,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        localStorage.setItem("Token", data.access_token);
+        if (data.access_token) {
+          window.location.href = "/student";
+        }
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
   return (
     <div className="App">
       <div class="min-h-screen p-6 bg-gray-100">
@@ -15,8 +52,9 @@ function Login() {
                         name="email"
                         id="email"
                         class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        value=""
+                        value={formData.email}
                         placeholder="email@domain.com"
+                        onChange={handleChange}
                       />
                     </div>
                     <div class="md:col-span-5">
@@ -26,7 +64,8 @@ function Login() {
                         name="password"
                         id="password"
                         class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        value=""
+                        value={formData.password}
+                        onChange={handleChange}
                         placeholder="password"
                       />
                     </div>
@@ -44,6 +83,7 @@ function Login() {
                       <a
                         href="/"
                         class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 button"
+                        onClick={handleSubmit}
                       >
                         Login
                         <svg

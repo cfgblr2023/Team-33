@@ -38,7 +38,12 @@ function CreateEvent() {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
+  const changeHandler = (e) => {
+    console.log(e.target.name);
+    this.setTitle({ [e.target.name]: e.target.value });
+  };
 
+  console.log(title);
   const handleSubmit = async (event) => {
     event.preventDefault();
     fetch(`${process.env.REACT_APP_URL}events/`, {
@@ -47,7 +52,7 @@ function CreateEvent() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        skill: formData.skill,
+        skill: title,
         online: formData.online,
         date_and_time: moment(formData.date_and_time).toISOString(),
         link: formData.link,
@@ -82,10 +87,8 @@ function CreateEvent() {
                             id="highest-qualification"
                             class="text-gray-800 w-full h-10 bg-gray-50 flex border border-gray-200 rounded items-center"
                             key="qa"
-                            value={formData.skill}
-                            onChange={(e) =>
-                              this.setForm({ value: e.target.value })
-                            }
+                            value={title}
+                            onChange={changeHandler}
                           >
                             <option value="No formal education" key="formal">
                               {play.name}
