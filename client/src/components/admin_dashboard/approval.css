@@ -70,6 +70,12 @@
 .NO {
   width: 30% !important;
 }
+.okay {
+  color: blue;
+}
+.okay:hover {
+  cursor: pointer;
+}
 .leaderboardTable .tableHead li {
   font-weight: 900;
   backdrop-filter: blur(10px);

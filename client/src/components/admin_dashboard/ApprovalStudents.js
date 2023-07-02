@@ -64,6 +64,7 @@ const ApprovalStudents = () => {
       .catch((err) => {
         console.log(err.message);
       });
+    window.location.reload();
   };
 
   return (
@@ -96,7 +97,7 @@ const ApprovalStudents = () => {
                   <li key="prof">{play.proof}</li>
                   <li
                     key="verify"
-                    class="text-blue"
+                    className="okay"
                     onClick={() => {
                       onSubmit(play.user.name);
                     }}

@@ -62,6 +62,7 @@ const ApprovalVolunteers = () => {
       .catch((err) => {
         console.log(err.message);
       });
+    window.location.reload();
   };
 
   return (
@@ -94,7 +95,7 @@ const ApprovalVolunteers = () => {
                   <li key="prof">{play.proof}</li>
                   <li
                     key="verify"
-                    class="text-blue"
+                    className="okay"
                     onClick={() => {
                       onSubmit(play.user.name);
                     }}
