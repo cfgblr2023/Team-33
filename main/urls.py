@@ -15,8 +15,8 @@ from datetime import timedelta
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # Token expiration time
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),  # Refresh token expiration time
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60), 
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),  
 }
 
 urlpatterns = [
