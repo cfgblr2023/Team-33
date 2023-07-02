@@ -37,7 +37,7 @@ function VolunteerForms() {
         localStorage.setItem("Token", data.access_token);
         localStorage.setItem("Data", JSON.stringify(data.user.user));
         if (data.access_token) {
-          window.location.href = "/student";
+          window.location.href = "/volunteer";
         }
       })
       .catch((err) => {

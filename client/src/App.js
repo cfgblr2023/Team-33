@@ -21,9 +21,18 @@ function App() {
           <Route exact path="/" element={<Landing />} />
           <Route exact path="/admin" element={<Admin />} />
           <Route exact path="/student" element={<Student />} />
+          <Route exact path="/volunteer" element={<Student />} />
           <Route exact path="/admin/overview" element={<Overview />} />
-          <Route exact path="/admin/approvalvolunteers" element={<ApproveVolunteers />} />    
-          <Route exact path="/admin/approvalstudents" element={<ApproveStudents />} />
+          <Route
+            exact
+            path="/admin/approvalvolunteers"
+            element={<ApproveVolunteers />}
+          />
+          <Route
+            exact
+            path="/admin/approvalstudents"
+            element={<ApproveStudents />}
+          />
           <Route exact path="/admin/createevent" element={<CreateEvent />} />
           <Route exact path="/student_register" element={<StudentRegister />} />
           <Route exact path="/login" element={<Login />} />
