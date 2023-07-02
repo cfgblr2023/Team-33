@@ -14,8 +14,30 @@ from .models import Student, Volunteer, Skill, Event, User
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import Admin
 from rest_framework.views import APIView
+from django.contrib.auth import authenticate
 
 
+class UserLoginView(APIView):
+    def post(self, request, format=None):
+        email = request.data.get('email')
+        password = request.data.get('password')
+
+        if email and password:
+            try:
+                user = User.objects.get(email=email, password=password)
+                print(user)
+                refresh = RefreshToken.for_user(user)
+                access_token = refresh.access_token
+                return Response({
+                    'access_token': str(access_token),
+                    'refresh_token': str(refresh),
+                }, status=200)
+            except User.DoesNotExist:
+                return Response({'message': 'User does not exist.'}, status=401)
+        else:
+            return Response({'message': 'Email and password are required.'}, status=400)
+        
+        
 class AdminCheckView(APIView):
     def get(self, request, format=None):
         email = request.query_params.get('email', None)
