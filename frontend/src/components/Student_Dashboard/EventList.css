@@ -1,0 +1,12 @@
+.Event-search {
+  margin: 3%;
+  color: white;
+}
+
+.search-input {
+  padding: 1%;
+  color: black;
+  border-radius: 5%;
+  border-color: black;
+  width: 20%;
+}
