@@ -1,4 +1,3 @@
-# serializers.py
 from rest_framework import serializers
 from .models import User, Student, Volunteer, Event, Skill
 
@@ -22,18 +21,14 @@ class StudentRegisterSerializer(serializers.ModelSerializer):
 
 class VolunteerRegisterSerializer(serializers.ModelSerializer):
     user = UserSerializer()
-    # skills = serializers.PrimaryKeyRelatedField(queryset=Skill.objects.all(), many=True)
-
     class Meta:
         model = Volunteer
         fields = ('user', 'qualifications', 'proof', 'isVerified')
 
     def create(self, validated_data):
         user_data = validated_data.pop('user')
-        # skills_data = validated_data.pop('skills', [])
         user = User.objects.create(**user_data)
         volunteer = Volunteer.objects.create(user=user, **validated_data)
-        # volunteer.skills.set(skills_data)
         return volunteer
 
 
