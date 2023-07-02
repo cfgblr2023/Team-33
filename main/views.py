@@ -94,7 +94,7 @@ class VerifyStudentView(generics.ListAPIView):
         username = request.data.get('username')
         if username:
             try:
-                student = Student.objects.get(user__username=username, isVerified=False)
+                student = Student.objects.get(user__name=username, isVerified=False)
                 student.isVerified = True
                 student.save()
                 return Response({'message': 'Student verified successfully.'})
@@ -114,7 +114,7 @@ class VerifyVolunteerView(generics.ListAPIView):
         username = request.data.get('username')
         if username:
             try:
-                volunteer = Volunteer.objects.get(user__username=username, isVerified=False)
+                volunteer = Volunteer.objects.get(user__name=username, isVerified=False)
                 volunteer.isVerified = True
                 volunteer.save()
                 return Response({'message': 'Volunteer verified successfully.'})
