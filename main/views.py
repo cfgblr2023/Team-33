@@ -30,8 +30,17 @@ class StudentRegisterView(generics.CreateAPIView):
     def post(self, request, format=None):
         user_data = self.request.data.get('user')
         user = User.objects.create(**user_data)
-        # user.set_password(user_data['password'])
         user.save()
+        
+        student_data = {
+        'user': user,
+        'highest_qualification': request.data.get('highest_qualification'),
+        'proof': request.data.get('proof'),
+        }
+    
+        student = Student.objects.create(**student_data)
+        student.save()
+        
         
         refresh = RefreshToken.for_user(user)
         access_token = refresh.access_token
@@ -51,8 +60,16 @@ class VolunteerRegisterView(generics.CreateAPIView):
     def post(self, request, format=None):
         user_data = self.request.data.get('user')
         user = User.objects.create(**user_data)
-        # user.set_password(user_data['password'])
         user.save()
+        
+        volunteer_data = {
+        'user': user,
+        'qualifications': request.data.get('qualifications'),
+        'proof': request.data.get('proof'),
+        }
+    
+        volunteer = Volunteer.objects.create(**volunteer_data)
+        volunteer.save()
         
         refresh = RefreshToken.for_user(user)
         access_token = refresh.access_token
