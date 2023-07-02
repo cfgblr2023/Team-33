@@ -63,10 +63,10 @@ Contributions are what make the open source community such an amazing place to b
 Distributed under the MIT License. See [LICENSE](https://github.com//ReadME-Generator/blob/main/LICENSE.md) for more information.
 
 ## Authors
-* **Backend Team**
+**Backend Team:**
 * **Ashutosh Bharadwaj**
 * **Purvi Binani**
-* **Frontend Team**
+**Frontend Team:**
 * **Aryaman Adivya Singh** 
 * **Shraddha Pawar**
 * **Shruti Singh**
